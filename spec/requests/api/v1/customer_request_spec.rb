@@ -2,37 +2,36 @@ require 'rails_helper'
 
 describe "Customers API" do
   it "sends a list of customers" do
-    FactoryBot.create_list(:customer, 5)
+    id = FactoryBot.create(:customer).id
 
-    get '/api/v1/customers'
+    get "/api/v1/customers/#{id}"
 
     expect(response).to be_successful
 
-    items = JSON.parse(response.body, symbolize_names: true)
+    customer = JSON.parse(response.body, symbolize_names: true)
 
-    expect(items[:data].count).to eq(5)
+    expect(customer[:data].count).to eq(3)
 
-    items[:data].each do |data|
-     expect(data).to have_key(:id)
-     expect(data[:id]).to be_a(String)
 
-     expect(data).to have_key(:type)
-     expect(data[:type]).to be_a(String)
+    expect(customer[:data]).to have_key(:id)
+    expect(customer[:data][:id]).to be_a(String)
 
-     expect(data).to have_key(:attributes)
-     expect(data[:attributes]).to be_a(Hash)
+    expect(customer[:data]).to have_key(:type)
+    expect(customer[:data][:type]).to be_a(String)
 
-     expect(data[:attributes]).to have_key(:first_name)
-     expect(data[:attributes][:first_name]).to be_a(String)
+    expect(customer[:data]).to have_key(:attributes)
+    expect(customer[:data][:attributes]).to be_a(Hash)
 
-     expect(data[:attributes]).to have_key(:last_name)
-     expect(data[:attributes][:last_name]).to be_a(String)
+    expect(customer[:data][:attributes]).to have_key(:first_name)
+    expect(customer[:data][:attributes][:first_name]).to be_a(String)
 
-     expect(data[:attributes]).to have_key(:email)
-     expect(data[:attributes][:email]).to be_a(String)
+    expect(customer[:data][:attributes]).to have_key(:last_name)
+    expect(customer[:data][:attributes][:last_name]).to be_a(String)
 
-     expect(data[:attributes]).to have_key(:address)
-     expect(data[:attributes][:address]).to be_a(String)
-    end
+    expect(customer[:data][:attributes]).to have_key(:email)
+    expect(customer[:data][:attributes][:email]).to be_a(String)
+
+    expect(customer[:data][:attributes]).to have_key(:address)
+    expect(customer[:data][:attributes][:address]).to be_a(String)
   end
 end
