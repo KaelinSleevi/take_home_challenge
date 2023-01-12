@@ -2,9 +2,8 @@ require 'rails_helper'
 
 RSpec.describe TeaSubscription, type: :model do
   describe 'relationships' do
-    it {should belong_to :customer}
-    it { should have_many :tea_subscriptions}
-    it { should have_many(:teas).through(:tea_subscriptions)}
+    it {should belong_to :tea}
+    it {should belong_to :subscription}
   end
 
   describe 'validations' do
