@@ -237,6 +237,8 @@
           1,
           1,
           2,
+          2,
+          2,
           null,
           null,
           1,
@@ -252,6 +254,8 @@
         "lines": [
           1,
           1,
+          1,
+          1,
           null,
           1,
           1,
@@ -259,8 +263,24 @@
           1,
           null
         ]
+      },
+      "/Users/kaelinsleevi/turing/4module/take-home/take_home_challenge/app/models/tea_subscription.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/kaelinsleevi/turing/4module/take-home/take_home_challenge/app/models/tea.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
       }
     },
-    "timestamp": 1673483303
+    "timestamp": 1673483902
   }
 }
