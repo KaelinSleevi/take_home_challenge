@@ -41,4 +41,20 @@ describe "Subscriptions API" do
    expect(subscription_data[:data][:attributes]).to have_key(:frequency)
    expect(subscription_data[:data][:attributes][:frequency]).to be_a(String)
   end
+
+  it "can delete a subscription" do
+  customer = FactoryBot.create(:customer)
+  teas = FactoryBot.create_list(:tea, 3)
+  subscription = FactoryBot.create(:subscription)
+
+  expect(Subscription.count).to eq(1)
+
+  delete "/api/v1/subscriptions/#{subscription.id}"
+ 
+  expect(response).to be_successful
+  expect(Subscription.count).to eq(0)
+  expect(response.status).to eq(204)
+  expect(response.body).to eq("")
+  expect{Subscription.find(subscription.id)}.to raise_error(ActiveRecord::RecordNotFound)
+  end
 end
