@@ -9,8 +9,8 @@ describe "Subscriptions API" do
       customer_id: customer.id,
       title: 'Early Grey',
       price: 14.99,
-      status: 'Active',
-      frequency: 'Monthly'
+      status: 0,
+      frequency: 0
    }
    headers = {"CONTENT_TYPE" => "application/json"}
    post api_v1_subscriptions_path, headers: headers, params: JSON.generate(subscription_params)

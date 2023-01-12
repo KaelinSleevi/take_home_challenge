@@ -1,8 +1,8 @@
 class Api::V1::SubscriptionsController < ApplicationController
  def create
   @customer = Customer.find_by(id: params[:customer_id])
-
   if @customer
+   require "pry"; binding.pry
    subscription = @customer.subscriptions.new(sub_params)
    if subscription.save
     render json: SubscriptionSerializer.new(subscription), status: :created
