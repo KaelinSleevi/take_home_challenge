@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe "Customers API" do
-  it "sends a list of customers" do
+  it "sends a customer" do
     id = FactoryBot.create(:customer).id
 
     get "/api/v1/customers/#{id}"
