@@ -55,6 +55,6 @@ describe "Subscriptions API" do
   expect(Subscription.count).to eq(0)
   expect(response.status).to eq(204)
   expect(response.body).to eq("")
-  expect{Subscription.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+  expect{Subscription.find(subscription.id)}.to raise_error(ActiveRecord::RecordNotFound)
   end
 end
