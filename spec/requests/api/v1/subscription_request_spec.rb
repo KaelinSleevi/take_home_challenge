@@ -19,7 +19,7 @@ describe "Subscriptions API" do
    expect(response.status).to eq(201)
 
    subscription_data = JSON.parse(response.body, symbolize_names: true)
-   require "pry"; binding.pry
+
    expect(subscription_data[:data]).to have_key(:id)
    expect(subscription_data[:data][:id]).to be_a(String)
 
