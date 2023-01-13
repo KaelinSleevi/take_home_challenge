@@ -92,7 +92,7 @@ The Tea Subscription backend is build on Rails 5.2.8.1 and Ruby 2.7.4
  #### Database Schema
 
 <div align="center">
-  <img width="441" alt="Screen Shot 2023-01-09 at 7 00 06 PM" src="https://user-images.githubusercontent.com/105956031/212371706-2865aacd-dff7-46b5-a614-adecd4d3e0d1.png)">
+  <img width="441" alt="Screen Shot 2023 01 09 at 7 00 06 PM" src="https://user-images.githubusercontent.com/105956031/212371706-2865aacd-dff7-46b5-a614-adecd4d3e0d1.png)">
 </div>
 
 
