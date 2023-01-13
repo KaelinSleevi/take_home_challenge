@@ -3,8 +3,8 @@ class Subscription < ApplicationRecord
  has_many :tea_subscriptions
  has_many :teas, through: :tea_subscriptions
 
- enum   status: {active: 0, cancelled: 2}
- enum frequency: { montly: 0, "bi_annually" => 1, annually: 3 }
+ enum status: {active: 0, cancelled: 1}
+ enum frequency: { montly: 0, "bi_annually" => 1, annually: 2 }
 
  validates_presence_of :customer_id
  validates_presence_of :title

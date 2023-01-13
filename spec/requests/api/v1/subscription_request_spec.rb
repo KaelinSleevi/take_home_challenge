@@ -42,19 +42,24 @@ describe "Subscriptions API" do
    expect(subscription_data[:data][:attributes][:frequency]).to be_a(String)
   end
 
-  it "can delete a subscription" do
+  it "can cancel a subscription" do
   customer = FactoryBot.create(:customer)
   teas = FactoryBot.create_list(:tea, 3)
-  subscription = FactoryBot.create(:subscription)
-
+  subscription = customer.subscriptions.create!(title: 'Tea Musketeers', price: 14.99, status: 0, frequency: 0)
+  
   expect(Subscription.count).to eq(1)
+  previous_status = Subscription.last.status
 
-  delete "/api/v1/subscriptions/#{subscription.id}"
- 
+  new_subscription_params = { status: 1 }
+
+  headers = {"CONTENT_TYPE" => "application/json"}
+  patch "/api/v1/subscriptions/#{subscription.id}", headers: headers, params: JSON.generate({subscription: new_subscription_params})
+
+  new_subscription = Subscription.find_by(id: subscription)
+
   expect(response).to be_successful
-  expect(Subscription.count).to eq(0)
-  expect(response.status).to eq(204)
-  expect(response.body).to eq("")
-  expect{Subscription.find(subscription.id)}.to raise_error(ActiveRecord::RecordNotFound)
+  expect(Subscription.count).to eq(1)
+  expect(new_subscription.status).to_not eq(previous_status)
+  expect(new_subscription.status).to eq('cancelled')
   end
 end

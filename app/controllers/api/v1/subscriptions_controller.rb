@@ -2,7 +2,6 @@ class Api::V1::SubscriptionsController < ApplicationController
  def create
   @customer = Customer.find_by(id: params[:customer_id])
   if @customer
-   require "pry"; binding.pry
    subscription = @customer.subscriptions.new(sub_params)
    if subscription.save
     render json: SubscriptionSerializer.new(subscription), status: :created
@@ -12,15 +11,21 @@ class Api::V1::SubscriptionsController < ApplicationController
   end
  end
 
- def destroy
+ def update
+  if Subscription.exists?(params[:id])
   subscription = Subscription.find(params[:id])
-  subscription.destroy
+   if subscription.update(sub_params)
+    subscription.save
+
+    render json: SubscriptionSerializer.new(subscription)
+   end
+  end
  end
 
 
  private
 
  def sub_params
-  params.permit(:title, :price, :status, :frequency, :customer_id)
+  params.require(:subscription).permit(:title, :price, :status, :frequency, :customer_id)
  end
 end
