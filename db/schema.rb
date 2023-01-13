@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 2023_01_10_015625) do
     t.bigint "customer_id"
     t.string "title"
     t.float "price"
-    t.string "status"
-    t.string "frequency"
+    t.integer "status", default: 0
+    t.integer "frequency", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_subscriptions_on_customer_id"
