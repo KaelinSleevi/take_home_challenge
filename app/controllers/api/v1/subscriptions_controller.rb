@@ -19,6 +19,8 @@ class Api::V1::SubscriptionsController < ApplicationController
 
     render json: SubscriptionSerializer.new(subscription)
    end
+  else
+   render json: { error: 'Subscription Not Found' }, status: :bad_request
   end
  end
 
